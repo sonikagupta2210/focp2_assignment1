@@ -1,0 +1,46 @@
+#include <iostream>
+using namespace std;
+
+void rotateMatrix(int arr[3][3], int n) {
+    for (int i = 0; i < n; i++) {
+        for (int j = i; j < n; j++) {
+            int temp = arr[i][j];
+            arr[i][j] = arr[j][i];
+            arr[j][i] = temp;
+        }
+    }
+
+    // Reversing rows
+    for (int i = 0; i < n; i++) {
+        int start = 0, end = n - 1;
+        while (start < end) {
+            int temp = arr[i][start];
+            arr[i][start] = arr[i][end];
+            arr[i][end] = temp;
+            start++;
+            end--;
+        }
+    }
+}
+
+void printArray(int arr[][3], int n){
+        for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            cout << arr[i][j] << " ";
+        }
+        cout << endl;
+    }
+}
+int main() {
+    int arr[3][3] = {1, 2, 3, 4, 5, 6, 7, 8,9};
+
+    int n = 3;
+
+    cout << "Original Matrix:" << endl;
+    printArray(arr,n);
+    rotateMatrix(arr, n);
+    cout << endl<<"Rotated Matrix :" << endl;
+    printArray(arr,n);
+
+    return 0;
+}
